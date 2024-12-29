@@ -12,24 +12,25 @@ class CatalogController extends Controller
         try {
             $query = Product::query();
 
-            if ($request->has('search')) {
+            if ($request->has('search') && $request->input('search') !== '') {
                 $search = $request->input('search');
                 $query->where(function ($q) use ($search) {
-                    $q->where('nama', 'like', "%{$search}%")
-                      ->orWhere('jenis_hewan', 'like', "%{$search}%")
-                      ->orWhere('kategori', 'like', "%{$search}%")
-                      ->orWhere('merek', 'like', "%{$search}%")
-                      ->orWhere('deskripsi', 'like', "%{$search}%");
+                    $q->where('nama_produk', 'like', "%{$search}%")
+                        ->orWhere('jenis_hewan', 'like', "%{$search}%")
+                        ->orWhere('kategori', 'like', "%{$search}%")
+                        ->orWhere('merek', 'like', "%{$search}%")
+                        ->orWhere('deskripsi', 'like', "%{$search}%");
                 });
             }
 
-            $products = $query->paginate(); // Pagination
+            $products = $query->get();
 
             return view('pages.app.katalog.index', compact('products'));
         } catch (\Exception $e) {
             return back()->withError($e->getMessage())->withInput();
         }
     }
+
 
 
     public function show($id)

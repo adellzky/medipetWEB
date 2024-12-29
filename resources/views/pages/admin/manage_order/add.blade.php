@@ -53,7 +53,8 @@
                                                     required>
                                                     <option value="">- Pilih Produk -</option>
                                                     @foreach ($products as $product)
-                                                        <option value="{{ $product->id }}">{{ $product->nama_produk }}
+                                                        <option value="{{ $product->id }}" data-harga="{{ $product->harga }}">
+                                                            {{ $product->nama_produk }}
                                                         </option>
                                                     @endforeach
                                                 </select>
@@ -138,28 +139,30 @@
         $(document).ready(function() {
             $('#add-product').click(function() {
                 const productTemplate = `
-            <div class="row product-item mt-2">
-                <div class="col-md-4">
-                    <div class="form-group mb-3">
-                        <select class="form-control id_product" name="id_product[]" required>
-                            <option value="">- Pilih Produk -</option>
-                            @foreach ($products as $product)
-                                <option value="{{ $product->id }}">{{ $product->nama_produk }}</option>
-                            @endforeach
-                        </select>
-                    </div>
+        <div class="row product-item mt-2">
+            <div class="col-md-4">
+                <div class="form-group mb-3">
+                    <select class="form-control id_product" name="id_product[]" required>
+                        <option value="">- Pilih Produk -</option>
+                        @foreach ($products as $product)
+                            <option value="{{ $product->id }}" data-harga="{{ $product->harga }}">
+                                {{ $product->nama_produk }}
+                            </option>
+                        @endforeach
+                    </select>
                 </div>
-                <div class="col-md-3">
-                    <input type="number" class="form-control jumlah_pembelian"
-                        name="jumlah_pembelian[]" min="1" placeholder="Jumlah" required>
-                </div>
-                <div class="col-md-3">
-                    <input type="text" class="form-control harga" readonly>
-                </div>
-                <div class="col-md-2 mb-3 align-self-center">
-                    <button type="button" class="btn btn-danger remove-product">Hapus</button>
-                </div>
-            </div>`;
+            </div>
+            <div class="col-md-3">
+                <input type="number" class="form-control jumlah_pembelian" name="jumlah_pembelian[]"
+                    min="1" placeholder="Jumlah" required>
+            </div>
+            <div class="col-md-3">
+                <input type="text" class="form-control harga" readonly>
+            </div>
+            <div class="col-md-2 mb-3 align-self-center">
+                <button type="button" class="btn btn-danger remove-product">Hapus</button>
+            </div>
+        </div>`;
                 $('#product-container').append(productTemplate);
                 updateProductOptions();
             });
@@ -167,18 +170,19 @@
             $(document).on('change', '.id_product', function() {
                 const productId = $(this).val();
                 const currentRow = $(this).closest('.product-item');
+                const harga = $(this).find(':selected').data('harga');
+
                 if (productId) {
-                    $.ajax({
-                        url: '/get-product-price/' + productId,
-                        type: 'GET',
-                        dataType: 'json',
-                        success: function(data) {
-                            currentRow.find('.harga').val(data.harga.toLocaleString('id-ID'));
-                            updateTotal();
-                            updateProductOptions();
-                        }
-                    });
+                    currentRow.find('.harga').val(harga ? harga.toLocaleString('id-ID') : '');
+                } else {
+                    currentRow.find('.harga').val('');
                 }
+                updateTotal();
+                updateProductOptions();
+            });
+
+            $(document).on('input', '.jumlah_pembelian', function() {
+                updateTotal();
             });
 
             $(document).on('click', '.remove-product', function() {
@@ -213,8 +217,7 @@
                 $('.id_product').each(function() {
                     const currentValue = $(this).val();
                     $(this).find('option').each(function() {
-                        if (selectedProducts.includes($(this).val()) && $(this).val() !==
-                            currentValue) {
+                        if (selectedProducts.includes($(this).val()) && $(this).val() !== currentValue) {
                             $(this).hide();
                         } else {
                             $(this).show();

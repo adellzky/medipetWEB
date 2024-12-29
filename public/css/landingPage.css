@@ -63,6 +63,13 @@ body {
     color: var(--black);
 }
 
+.navbar-brand img {
+    width: 200px;
+    /* Atur lebar sesuai kebutuhan */
+    height: auto;
+    /* Menjaga rasio aspek gambar */
+}
+
 section.hero {
     padding: 210px 0;
 }
@@ -82,7 +89,8 @@ section.hero .text {
 
 /* Hero Section */
 .hero {
-    padding: 10px 0; /* Padding atas dan bawah */
+    padding: 10px 0;
+    /* Padding atas dan bawah */
 }
 
 .hero .text {
@@ -99,7 +107,8 @@ section.hero .text {
     font-size: 1rem;
     line-height: 1.6;
     margin-top: 5px;
-    margin-bottom: 10px; /* Menambahkan jarak bawah */
+    margin-bottom: 10px;
+    /* Menambahkan jarak bawah */
 }
 
 /* Bagian Gambar */
@@ -112,24 +121,29 @@ section.hero .text {
 .img img {
     width: 100%;
     height: 170px;
-    max-width: 400px; /* Maksimal lebar gambar */
+    max-width: 400px;
+    /* Maksimal lebar gambar */
     object-fit: cover;
-    margin: 0 auto; /* Tengah pada layar kecil */
+    margin: 0 auto;
+    /* Tengah pada layar kecil */
 }
 
 /* Responsif Tambahan untuk Mobile */
 @media (max-width: 768px) {
     .img img {
         padding: 10px;
-        margin-top: 30px; /* Jarak antara gambar dan teks */
-        max-width: 300px; /* Membatasi lebar gambar */
+        margin-top: 30px;
+        /* Jarak antara gambar dan teks */
+        max-width: 300px;
+        /* Membatasi lebar gambar */
         height: auto;
     }
 
     .hero .text {
         padding-left: 10px;
         margin-top: -140px;
-        margin-bottom: 5px; /* Menambahkan jarak di bawah teks */
+        margin-bottom: 5px;
+        /* Menambahkan jarak di bawah teks */
     }
 }
 
@@ -163,15 +177,20 @@ section.layanan .icons {
 
 section.layanan .icons img,
 section.layanan .icons svg {
-    width: 50px; /* Atur lebar ikon */
-    height: 50px; /* Atur tinggi ikon */
-    object-fit: contain; /* Untuk memastikan proporsi ikon tetap terjaga */
+    width: 50px;
+    /* Atur lebar ikon */
+    height: 50px;
+    /* Atur tinggi ikon */
+    object-fit: contain;
+    /* Untuk memastikan proporsi ikon tetap terjaga */
 }
 
 section.layanan .icons img:hover,
 section.layanan .icons svg:hover {
-    transform: scale(1.1); /* Efek hover untuk ikon */
-    transition: transform 0.3s ease; /* Transisi halus pada efek hover */
+    transform: scale(1.1);
+    /* Efek hover untuk ikon */
+    transition: transform 0.3s ease;
+    /* Transisi halus pada efek hover */
 }
 
 section.layanan h5 {
@@ -235,12 +254,14 @@ section.produk .info-1 {
     color: #333;
     margin-bottom: 40px;
     font-weight: bold;
-    text-align: center; /* Menyelaraskan judul ke tengah */
+    text-align: center;
+    /* Menyelaraskan judul ke tengah */
 }
 
 .text-produk {
     padding: 20px;
-    margin-bottom: 40px; /* Menambahkan jarak antar produk */
+    margin-bottom: 40px;
+    /* Menambahkan jarak antar produk */
 }
 
 .text-produk h5 {
@@ -257,11 +278,14 @@ section.produk .info-1 {
 
 /* Gaya untuk Gambar */
 .row img {
-    width: 45%; /* Memperkecil ukuran gambar */
+    width: 45%;
+    /* Memperkecil ukuran gambar */
     height: auto;
     transition: transform 0.5s;
-    display: block; /* Menghilangkan spasi di bawah gambar */
-    margin: 0 auto; /* Menyelaraskan gambar ke tengah */
+    display: block;
+    /* Menghilangkan spasi di bawah gambar */
+    margin: 0 auto;
+    /* Menyelaraskan gambar ke tengah */
 }
 
 .row img:hover {
@@ -290,50 +314,68 @@ section.produk .info-1 {
 
 /* Gaya Umum untuk Footer */
 .footer {
-    background-color: #da83c7; /* Warna latar belakang footer */
-    color: #fff; /* Warna teks */
-    padding: 20px 0; /* Padding atas dan bawah */
+    background-color: #da83c7;
+    /* Warna latar belakang footer */
+    color: #fff;
+    /* Warna teks */
+    padding: 20px 0;
+    /* Padding atas dan bawah */
 }
 
 .footer h5 {
-    font-size: 1.5rem; /* Ukuran font untuk judul */
-    margin-bottom: 20px; /* Jarak bawah judul */
-    color: var(--body); /* Warna judul */
+    font-size: 1.5rem;
+    /* Ukuran font untuk judul */
+    margin-bottom: 20px;
+    /* Jarak bawah judul */
+    color: var(--body);
+    /* Warna judul */
 }
 
 .footer p {
-    font-size: 0.9rem; /* Ukuran font untuk paragraf */
-    line-height: 1.6; /* Jarak antar baris */
+    font-size: 0.9rem;
+    /* Ukuran font untuk paragraf */
+    line-height: 1.6;
+    /* Jarak antar baris */
 }
 
 .footer ul {
-    list-style-type: none; /* Menghilangkan bullet point */
-    padding: 0; /* Menghilangkan padding */
+    list-style-type: none;
+    /* Menghilangkan bullet point */
+    padding: 0;
+    /* Menghilangkan padding */
 }
 
 .footer ul li {
-    margin-bottom: 10px; /* Jarak antar item */
-    cursor: pointer; /* Menunjukkan bahwa item dapat diklik */
-    transition: color 0.3s; /* Transisi warna saat hover */
+    margin-bottom: 10px;
+    /* Jarak antar item */
+    cursor: pointer;
+    /* Menunjukkan bahwa item dapat diklik */
+    transition: color 0.3s;
+    /* Transisi warna saat hover */
 }
 
 .footer ul li:hover {
-    color: #007bff; /* Warna saat hover */
+    color: #007bff;
+    /* Warna saat hover */
 }
 
 /* Gaya untuk Copyright */
 .footer .text-center {
-    margin-top: 10px; /* Jarak atas untuk copyright */
-    font-size: 0.8rem; /* Ukuran font untuk copyright */
+    margin-top: 10px;
+    /* Jarak atas untuk copyright */
+    font-size: 0.8rem;
+    /* Ukuran font untuk copyright */
 }
 
 /* Responsif */
 @media (max-width: 768px) {
     .footer h5 {
-        font-size: 1.3rem; /* Ukuran font untuk judul pada layar kecil */
+        font-size: 1.3rem;
+        /* Ukuran font untuk judul pada layar kecil */
     }
 
     .footer p {
-        font-size: 0.8rem; /* Ukuran font untuk paragraf pada layar kecil */
+        font-size: 0.8rem;
+        /* Ukuran font untuk paragraf pada layar kecil */
     }
 }

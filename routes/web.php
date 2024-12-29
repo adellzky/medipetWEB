@@ -153,7 +153,7 @@ Route::group(['middleware' => ['auth', 'checkrole:2']], function () {
     // Catalog
     Route::get('/catalogs', [CatalogController::class, 'index'])->name('catalogs.index');
     Route::get('/catalogs/{id}', [CatalogController::class, 'show'])->name('catalogs.show');
-    Route::post('/catalogs/{id}/addtocart', [CatalogController::class, 'addToCart'])->name('catalogs.addToCart');
+    Route::get('/catalogs/{id}/addtocart', [CartController::class, 'addtocart'])->name('catalogs.addtocart');
 
 
     // Konsultasi

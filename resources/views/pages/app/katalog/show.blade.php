@@ -4,49 +4,47 @@
 
 
 @section('main')
-<div class="main-content">
-    <section class="section" >
-        <div class="section-header">
-            <h1>Detail Produk</h1>
-        </div>
+    <div class="main-content">
+        <section class="section">
+            <div class="section-header">
+                <h1>Detail Produk</h1>
+            </div>
 
-        <div class="container mx-auto px-4 py-8">
-            <div class="card">
-                <div class="card-header">
-                    <h2>{{ $product->nama }}</h2>
-                </div>
-                <div class="card-body">
-                    <div class="media">
-                        <!-- Product Image -->
-                        <img class="mr-3"
-                            src="{{ asset('product/' . $product->image) }}"
-                            alt="{{ $product->nama }}" style="max-width: 500px; border-radius: 20px;">
+            <div class="container mx-auto px-4 py-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>{{ $product->nama }}</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="media">
+                            <!-- Product Image -->
+                            <img class="mr-3" src="{{ asset('product/' . $product->image) }}" alt="{{ $product->nama }}"
+                                style="max-width: 500px; border-radius: 20px;">
 
-                        <!-- Product Details -->
-                        <div class="media-body">
-                            <h5 class="mt-0">Rp.{{ number_format($product->harga, 2) }}</h5>
+                            <!-- Product Details -->
+                            <div class="media-body">
+                                <h5 class="mt-0">Rp.{{ number_format($product->harga, 2) }}</h5>
 
-                            <p class="mt-5 px-4">{{ $product->deskripsi }}</p>
+                                <p class="mt-5 px-4">{{ $product->deskripsi }}</p>
 
-                            <div class="mb-3 px-4">
-                                <p class="text-sm text-gray-500 mb-1">Stok: {{ $product->stok }}</p>
-                                <p class="text-sm text-gray-500 mb-1">Kadaluarsa: {{ $product->kadaluarsa }}</p>
+                                <div class="mb-3 px-4">
+                                    <p class="text-sm text-gray-500 mb-1">Stok: {{ $product->stok }}</p>
+                                    <p class="text-sm text-gray-500 mb-1">Kadaluarsa: {{ $product->kadaluarsa }}</p>
+                                </div>
+
+                                <center><a href="{{ route('cart.addtocart', $product->id) }}" class="btn btn-primary px-3">
+                                     Tambah Ke Keranjang
+                                </a></center>
                             </div>
-
-                            <form action="{{ route('catalogs.addToCart', $product->id) }}" method="POST" class="mt-9 px-4">
-                                @csrf
-                                <button type="submit" class="btn btn-primary mt-5">Tambah ke Keranjang</button>
-                            </form>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-</div>
-        </div>
+    </div>
+    </div>
 
     </section>
-</div>
+    </div>
 
 @endsection
 @push('scripts')

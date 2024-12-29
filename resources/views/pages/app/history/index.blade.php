@@ -45,7 +45,7 @@
                                         @endforeach
                                     </select>
                                     <button type="submit" class="btn btn-primary p-2"
-                                        style="font-size: 18px">Filter</button>
+                                        style="font-size: 18px">Cari</button>
                                 </div>
                             </form>
 
