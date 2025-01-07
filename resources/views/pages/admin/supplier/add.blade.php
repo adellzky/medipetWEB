@@ -20,28 +20,49 @@
 
                         <div class="card-body">
                             <div class="form-group">
-                                <label>Nama Supplier</label>
-                                <input type="text" class="form-control" name="nama_supplier" placeholder="Nama Supplier" required>
+                                <label for="nama_supplier">Nama Supplier</label>
+                                <input type="text" class="form-control @error('nama_supplier') is-invalid @enderror"
+                                    id="nama_supplier" name="nama_supplier" value="{{ old('nama_supplier') }}"
+                                    placeholder="Nama Supplier">
+                                @error('nama_supplier')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             <div class="form-group">
-                                <label>Alamat</label>
-                                <input type="text" class="form-control" name="alamat" placeholder="Alamat" required>
+                                <label for="alamat">Alamat</label>
+                                <input type="text" class="form-control @error('alamat') is-invalid @enderror"
+                                    id="alamat" name="alamat" value="{{ old('alamat') }}" placeholder="Alamat">
+                                @error('alamat')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             <div class="form-group">
-                                <label>Kontak</label>
-                                <input type="text" class="form-control" name="kontak" placeholder="Kontak" required>
+                                <label for="kontak">Kontak</label>
+                                <input type="text" class="form-control @error('kontak') is-invalid @enderror"
+                                    id="kontak" name="kontak" value="{{ old('kontak') }}" placeholder="Kontak">
+                                @error('kontak')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             <div class="form-group">
-                                <label>ATM</label>
-                                <input type="text" class="form-control" name="atm" placeholder="ATM" required>
+                                <label for="atm">ATM</label>
+                                <input type="text" class="form-control @error('atm') is-invalid @enderror" id="atm"
+                                    name="atm" value="{{ old('atm') }}" placeholder="ATM">
+                                @error('atm')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             <div class="form-group">
-                                <label>No Rekening</label>
-                                <input type="text" class="form-control" name="norek" placeholder="No Rekening" required>
+                                <label for="norek">No Rekening</label>
+                                <input type="text" class="form-control @error('norek') is-invalid @enderror"
+                                    id="norek" name="norek" value="{{ old('norek') }}" placeholder="No Rekening">
+                                @error('norek')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
 

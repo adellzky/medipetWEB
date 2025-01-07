@@ -6,14 +6,14 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>Data Pengeluaran</h1>
+            <h1>Data Pembelian</h1>
         </div>
 
         <div class="section-body">
             <div class="col-12 col-md-12 col-lg-12">
                 <div class="card mt-4">
                     <div class="card-header">
-                        <h4>Data Pengeluaran</h4>
+                        <h4>Data Pembelian</h4>
                     </div>
                     <div class="card-body">
                         <form method="GET" action="{{ route('laporan.pengeluaran') }}">

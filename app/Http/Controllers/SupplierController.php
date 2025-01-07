@@ -17,8 +17,8 @@ class SupplierController extends Controller
 
         if ($request->has('q')) {
             $query->where('nama_supplier', 'like', '%' . $request->q . '%')
-                  ->orWhere('alamat', 'like', '%' . $request->q . '%')
-                  ->orWhere('kontak', 'like', '%' . $request->q . '%');
+                ->orWhere('alamat', 'like', '%' . $request->q . '%')
+                ->orWhere('kontak', 'like', '%' . $request->q . '%');
         }
 
         $suppliers = $query->get();
@@ -28,6 +28,7 @@ class SupplierController extends Controller
     // Menampilkan halaman form tambah supplier
     public function create()
     {
+
         return view('pages.admin.supplier.add');
     }
 
@@ -36,10 +37,19 @@ class SupplierController extends Controller
     {
         $request->validate([
             'nama_supplier' => 'required|string',
-            'alamat' => 'required',
-            'kontak' => 'required|numeric',
-            'atm' => 'required',
+            'alamat' => 'required|string',
+            'kontak' => 'required|numeric|digits_between:11,12',
+            'atm' => 'required|string',
             'norek' => 'required|numeric',
+        ], [
+            'nama_supplier.required' => 'Nama supplier tidak boleh kosong.',
+            'alamat.required' => 'Alamat tidak boleh kosong.',
+            'kontak.required' => 'Nomor kontak tidak boleh kosong.',
+            'kontak.numeric' => 'Nomor kontak harus berupa angka.',
+            'kontak.digits_between' => 'Nomor kontak harus memiliki panjang 11 hingga 12 digit.',
+            'atm.required' => 'ATM tidak boleh kosong.',
+            'norek.required' => 'Nomor rekening tidak boleh kosong.',
+            'norek.numeric' => 'Nomor rekening harus berupa angka.',
         ]);
 
         Supplier::create($request->all());
@@ -94,15 +104,7 @@ class SupplierController extends Controller
             // Hapus supplier
             $supplier->delete();
 
-            // Update ID supplier lain untuk menggantikan ID yang dihapus (jika diperlukan)
-            Supplier::where('id', '>', $id)
-                    ->decrement('id', 1);
-
-            
-
-            return redirect()->route('suppliers.index')->with('success', 'Supplier berhasil dihapus!');
+            // Update ID supplier lain untuk menggantikan ID yang dihapus (jika diperluka
         }
-
-        return redirect()->route('suppliers.index')->with('error', 'Supplier tidak ditemukan!');
     }
 }

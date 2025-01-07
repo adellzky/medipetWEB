@@ -1,100 +1,50 @@
-//pemasukan_pdf.blade.php
-
-
-
-
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Penjualan PDF</title>
+    <title>Laporan Pembelian</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        h1, h4 {
-            text-align: center;
-        }
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
         }
         th, td {
-            border: 1px solid #000;
+            border: 1px solid black;
             padding: 8px;
-            text-align: center;
-        }
-        th {
-            background-color: #f2f2f2;
+            text-align: left;
         }
     </style>
 </head>
 <body>
-    <h1>Data Penjualan</h1>
-    <h4>Bulan: {{ date('F', mktime(0, 0, 0, $month, 1)) }} Tahun: {{ $year }}</h4>
-
-    <h5>Total Pendapatan: {{ number_format($totalRevenue, 2, ',', '.') }}</h5>
-    <h5>Total Pembelian: {{ $totalPurchases }}</h5>
-
-    <h5>Data Penjualan Produk</h5>
+    <h1>Laporan Pembelian</h1>
+    <p>Tanggal cetak: {{ date('d-m-Y H:i:s') }}</p>
     <table>
         <thead>
             <tr>
+                <th>ID</th>
+                <th>Tanggal</th>
+                <th>Jenis Transaksi</th>
                 <th>Nama Produk</th>
-                <th>Total Terjual</th>
-                <th>Total (Rp)</th>
+                <th>Jumlah</th>
+                <th>Harga Satuan</th>
+                <th>Supplier</th>
+                <th>Total</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($productOrders as $order)
+            @php $index = 1; @endphp
+            @foreach ($restocks as $restock)
                 <tr>
-                    <td>{{ $order->product->nama_produk }}</td>
-                    <td>{{ $order->total_quantity }}</td>
-                    <td>{{ number_format($order->total_quantity * $order->product->harga, 2, ',', '.') }}</td>
-                </tr>
-            @endforeach
-            @foreach ($unsoldProducts as $product)
-                <tr>
-                    <td>{{ $product->nama_produk }}</td>
-                    <td>0</td>
-                    <td>0</td>
+                    <td>{{ $index++ }}</td>
+                    <td>{{ $restock->tanggal_pembelian }}</td>
+                    <td>Restock</td>
+                    <td>{{ $restock->product->nama_produk }}</td>
+                    <td>{{ $restock->quantity }}</td>
+                    <td>{{ $restock->harga_satuan }}</td>
+                    <td>{{ $restock->supplier }}</td>
+                    <td>{{ $restock->total_harga }}</td>
                 </tr>
             @endforeach
         </tbody>
     </table>
-
-    <h5>Data Layanan</h5>
-    <table>
-        <thead>
-            <tr>
-                <th>Nama Layanan</th>
-                <th>Total Dipesan</th>
-                <th>Total (Rp)</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($serviceBookings as $booking)
-                <tr>
-                    <td>{{ $booking->category->service_category }}</td>
-                    <td>{{ $booking->total_bookings }}</td>
-                    <td>{{ number_format($booking->total_bookings * $booking->category->price, 2, ',', '.') }}</td>
-                </tr>
-            @endforeach
-            @foreach ($unsoldServices as $service)
-                <tr>
-                    <td>{{ $service->service_category }}</td>
-                    <td>0</td>
-                    <td>0</td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
-
-    @if ($productOrders->isEmpty() && $serviceBookings->isEmpty())
-        <p class="text-center">Tidak ada data penjualan untuk bulan dan tahun yang dipilih.</p>
-    @endif
 </body>
 </html>
