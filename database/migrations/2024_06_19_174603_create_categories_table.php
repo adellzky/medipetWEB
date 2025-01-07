@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('pet_category');
             $table->string('service_category');
-            $table->time('service_time');
             $table->string('take_status');
             $table->integer('price');
             $table->timestamps();
