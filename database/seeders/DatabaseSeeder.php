@@ -24,5 +24,10 @@ class DatabaseSeeder extends Seeder
        ]);
 
        User::factory(5)->create();
+
+    //    User::create([
+    //     'name' => 'adel',
+
+    //    ]);
     }
 }
